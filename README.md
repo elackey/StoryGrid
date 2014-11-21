@@ -1,4 +1,9 @@
-StoryGrid
-=========
+storyGrid
+=========================
 
-User Story grid with Portfolio details
+## Overview
+Learning the Rally SDK
+
+## License
+
+AppTemplate is released under the MIT license.  See the file [LICENSE](https://raw.github.com/RallyApps/AppTemplate/master/LICENSE) for the full text.
