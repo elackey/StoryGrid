@@ -3,6 +3,7 @@ storyGrid
 
 ## Overview
 Learning the Rally SDK
+Updating with new details.
 
 ## License
 
