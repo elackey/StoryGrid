@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>grid</title>
+
+    <script type="text/javascript" src="https://rally1.rallydev.com/apps/2.0rc3/sdk.js"></script>
+
+    <script type="text/javascript">
+        Rally.onReady(function () {
+                Ext.define('CustomApp', {
+    extend: 'Rally.app.App',
+    componentCls: 'app',
+
+    launch: function() {
+        Ext.create('Rally.data.wsapi.TreeStoreBuilder').build({
+            models: ['defect'],
+            autoLoad: true,
+            enableHierarchy: true
+        }).then({
+            success: this._onStoreBuilt,
+            scope: this
+        });
+    },
+            
+    _onStoreBuilt: function(store) {
+        this.add({
+            xtype: 'rallytreegrid',
+            context: this.getContext(),
+            store: store,
+            columnCfgs: [
+                'Name',
+                'ScheduleState',
+                'Owner',
+                'Requirement'
+            ]
+        });
+    }
+});
+
+
+            Rally.launchApp('CustomApp', {
+                name:"grid",
+	            parentRepos:""
+            });
+
+        });
+    </script>
+
+
+    <style type="text/css">
+        .app {
+     /* Add app styles here */
+}
+
+    </style>
+</head>
+<body></body>
+</html>
