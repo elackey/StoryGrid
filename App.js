@@ -4,9 +4,25 @@ Ext.define('CustomApp', {
 
     launch: function() {
         Ext.create('Rally.data.wsapi.TreeStoreBuilder').build({
-            models: ['defect'],
+            models: ['userStory'],
             autoLoad: true,
-            enableHierarchy: true
+            enableHierarchy: true,
+            filters: [{
+                property: 'Parent.ObjectID',
+                operator: '!contains',
+                value: null
+            }],
+            fetch: [
+                'Name',
+                'Release',
+                'Iteration',
+                'ScheduleState',
+                'PlanEstimate',
+                'TaskEstimateTotal',
+                'TaskRemainingTotal',
+                'Owner',
+                'Parent'
+            ]
         }).then({
             success: this._onStoreBuilt,
             scope: this
@@ -20,9 +36,15 @@ Ext.define('CustomApp', {
             store: store,
             columnCfgs: [
                 'Name',
+                'Release',
+                'Iteration',
                 'ScheduleState',
+                'PlanEstimate',
+                'TaskEstimateTotal',
+                'TaskRemainingTotal',
                 'Owner',
-                'Requirement'
+                'Parent',
+                'Parent.Project.Name'
             ]
         });
     }

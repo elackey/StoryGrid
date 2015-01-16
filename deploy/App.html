@@ -7,7 +7,7 @@
 
     <script type="text/javascript">
         Rally.onReady(function () {
-                Ext.define("CustomApp",{extend:"Rally.app.App",componentCls:"app",launch:function(){Ext.create("Rally.data.wsapi.TreeStoreBuilder").build({models:["defect"],autoLoad:!0,enableHierarchy:!0}).then({success:this._onStoreBuilt,scope:this})},_onStoreBuilt:function(store){this.add({xtype:"rallytreegrid",context:this.getContext(),store:store,columnCfgs:["Name","ScheduleState","Owner","Requirement"]})}});
+                Ext.define("CustomApp",{extend:"Rally.app.App",componentCls:"app",launch:function(){Ext.create("Rally.data.wsapi.TreeStoreBuilder").build({models:["userStory"],autoLoad:!0,enableHierarchy:!0,filters:[{property:"Parent.ObjectID",operator:"!contains",value:null}],fetch:["Name","Release","Iteration","ScheduleState","PlanEstimate","TaskEstimateTotal","TaskRemainingTotal","Owner","Parent"]}).then({success:this._onStoreBuilt,scope:this})},_onStoreBuilt:function(store){this.add({xtype:"rallytreegrid",context:this.getContext(),store:store,columnCfgs:["Name","Release","Iteration","ScheduleState","PlanEstimate","TaskEstimateTotal","TaskRemainingTotal","Owner","Parent","Parent.Project.Name"]})}});
 
             Rally.launchApp('CustomApp', {
                 name:"grid",
